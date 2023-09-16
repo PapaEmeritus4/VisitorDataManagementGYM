@@ -28,4 +28,34 @@ public class FileHandler {
         }
         return members;
     }
+
+    public void appendFile(String mem) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("members.csv", true))) {
+            writer.write(mem + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void overwriteFile(LinkedList<Member> members) {
+        String s;
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("members.temp", false))) {
+            for (int i = 0; i <members.size() ; i++) {
+                s = members.get(i).toString();
+                writer.write(s + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+           File f = new File("members.csv");
+           File tf = new File("members.temp");
+
+           f.delete();
+           tf.renameTo(f);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
