@@ -6,7 +6,7 @@ public class FileHandler {
     public LinkedList<Member> readFile() {
         LinkedList<Member> members = new LinkedList<>();
         String lineRead;
-        String[] splitLine = new String[0];
+        String[] splitLine;
         Member member;
 
         try (BufferedReader reader = new BufferedReader(new FileReader("members.csv"))) {

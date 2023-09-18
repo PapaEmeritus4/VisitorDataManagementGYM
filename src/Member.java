@@ -45,11 +45,9 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Member{" +
-                "memberType=" + memberType +
-                ", memberID=" + memberID +
-                ", name='" + name + '\'' +
-                ", fees=" + fees +
-                '}';
+        return memberType +
+                ", " + memberID +
+                ", " + name  +
+                ", " + fees;
     }
 }

@@ -17,7 +17,6 @@ public class SingleClubMember extends Member {
     @Override
     public String toString() {
         return super.toString() +
-                " club=" + club +
-                '}';
+                ", " + club;
     }
 }

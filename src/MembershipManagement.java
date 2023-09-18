@@ -13,8 +13,6 @@ public class MembershipManagement {
                 choice = reader.nextInt();
                 if (choice == 0) throw new InputMismatchException();
                 reader.nextLine();
-
-
             } catch (InputMismatchException e) {
                 reader.nextLine();
 
@@ -25,7 +23,7 @@ public class MembershipManagement {
     }
 
     private void printClubOptipons() {
-        System.out.println("1) Club Mercury ");
+        System.out.println("\n1) Club Mercury ");
         System.out.println("2) Club Neptune ");
         System.out.println("3) Club Jupiter ");
         System.out.println("4) Multi Clubs ");
@@ -59,6 +57,7 @@ public class MembershipManagement {
         name = reader.nextLine();
 
         printClubOptipons();
+        System.out.println("Please enter the member`s club ID: ");
         club = getIntInput();
         while (club < 1 || club > 4) {
             System.out.print("The entered value is not valid, try again: ");
@@ -90,8 +89,8 @@ public class MembershipManagement {
 
             System.out.println("\nSTATUS: Single Club Member added!\n");
         } else {
-            calculator = (x) -> {
-                switch (x) {
+            calculator = (n) -> {
+                switch (n) {
                     case 4:
                         return  1200;
                     default:
@@ -110,5 +109,43 @@ public class MembershipManagement {
         return mem;
     }
 
-    //закончил на 254 стр
+    public void removeMember(LinkedList<Member> members) {
+        int memberID;
+
+        System.out.println("Enter ID Member: ");
+        memberID = getIntInput();
+
+        for (int i = 0; i < members.size() ; i++) {
+            if (members.get(i).getMemberID() == memberID) {
+                members.remove(i);
+                System.out.println("The Member has been successfully deleted");
+                return;
+            }
+        }
+        System.out.println("Member ID not found");
+    }
+
+    public void printMemberInfo(LinkedList<Member> members) {
+        int memberID;
+
+        System.out.println("Enter ID Member to display information: ");
+        memberID = getIntInput();
+
+        for (int i = 0; i < members.size(); i++) {
+            if (members.get(i).getMemberID() == memberID) {
+                String[] memberInfo = members.get(i).toString().split(", ");
+                System.out.println("\n\nMember type = " + memberInfo[0]);
+                System.out.println("Member ID = " + Integer.parseInt(memberInfo[1]));
+                System.out.println("Member Name = " + memberInfo[2]);
+                System.out.println("Member Fees = " + Double.parseDouble(memberInfo[3]));
+                if (memberInfo[0].equals("S")) {
+                    System.out.println("Club ID = " + Integer.parseInt(memberInfo[4]));
+                } else {
+                    System.out.println("Membership Points = " + Integer.parseInt(memberInfo[4]));
+                }
+                return;
+            }
+        }
+        System.out.println("Member ID not found");
+    }
 }
